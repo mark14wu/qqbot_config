@@ -26,7 +26,7 @@ def onQQMessage(bot, contact, member, content):
 	if order_flag:
 		return search_song(user_input, contact, member, content)
 
-def search_song(user_input, contact, member, content)
+def search_song(user_input, contact, member, content):
 	songname = user_input.split('，')[0]
 	artist = None
 	try:
