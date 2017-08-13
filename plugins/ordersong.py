@@ -8,7 +8,7 @@ group_list = ["596776383", "513096350", "54840756", "662936261"]
 # 513096350 = 1/2EFZers
 # 54840756 = EFZ
 # 662936261 = 2020届6班
-order_keywords = ['点歌', '来一首', '来首']
+order_keywords = ['点歌', '来一首', '来首', '点首']
 rank_keywords = ['点歌', '排行']
 
 def onQQMessage(bot, contact, member, content):
