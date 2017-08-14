@@ -10,21 +10,10 @@ group_list = ["596776383", "513096350", "54840756", "662936261"]
 # 662936261 = 2020届6班
 order_keywords = ['点歌', '来一首', '来首', '点首']
 rank_keywords = ['点歌', '排行']
-orders = {}
+dict_rank = {}
 
-class Order(object):
-	def __init__(self, membername):
-		self.membername = membername
-		self.dict_songnames = {}
-		self.songnumber = 0
-
-	def add(self, keyword, songname):
-		self.songnumber += 1
-		self.dict_songnames[keyword] = songname
-
-def rank_query:
-	rank_list = sorted(orders.items(), key=item.songnumber, reverse=True)
-	print(rank_list[0].membername)
+def ordeR_rank(bot, contact, member, songname):
+        
 
 def onQQMessage(bot, contact, member, content):
 	order_flag = False
@@ -48,6 +37,8 @@ def search_song(bot, user_input, contact, member, content):
 		artist = user_input.split('，')[1]
 	except:
 		pass
+	sys.stdout.buffer.write(songname.encode('utf8'))
+	# try:
 	post_data = {'s': songname, 'limit': 10, 'type': 1, 'offset': 0}
 	postfields = urlencode(post_data)
 	buffer = BytesIO()
@@ -74,6 +65,8 @@ def search_song(bot, user_input, contact, member, content):
 	order_content2 = "http://music.163.com/song/" + str(id) + "?userid=52663812"
 	bot.SendTo(contact, order_content1)
 	bot.SendTo(contact, order_content2)
-	if not member.name in orders:
-		orders[member.name] = Order(member.name)
-	orders[member.name].add(songname, name)
+	# print('\n')
+	# print(order_content)
+	# except:
+	# 	bot.SendTo(contact, '点歌' + songname + '失败！')
+	rank_flag = True
