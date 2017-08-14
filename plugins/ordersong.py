@@ -9,7 +9,8 @@ group_list = ["596776383", "513096350", "54840756", "662936261"]
 # 54840756 = EFZ
 # 662936261 = 2020届6班
 order_keywords = ['点歌', '来一首', '来首', '点首']
-rank_keywords = ['点歌', '排行']
+# rank_keywords = ['点歌', '排行']
+rank_keywords = ['rank']
 orders = {}
 
 class Order(object):
@@ -28,6 +29,7 @@ class Order(object):
 def rank_query():
 	rank_list = sorted(orders.values(), key=lambda item: item.songnumber, reverse=True)
 	print(rank_list[0].getname())
+	print("success!\n")
 
 def onQQMessage(bot, contact, member, content):
 	order_flag = False
