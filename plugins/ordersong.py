@@ -22,11 +22,12 @@ class Order(object):
 		self.songnumber += 1
 		self.dict_songnames[keyword] = songname
 
-	def
+	def getname(self)
+		return self.membername
 
 def rank_query():
 	rank_list = sorted(orders.items(), key=lambda item: item.songnumber, reverse=True)
-	print(rank_list[0].membername)
+	print(rank_list[0].getname())
 
 def onQQMessage(bot, contact, member, content):
 	order_flag = False
