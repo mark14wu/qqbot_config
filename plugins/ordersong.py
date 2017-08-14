@@ -16,20 +16,31 @@ orders = {}
 class Order(object):
 	def __init__(self, membername):
 		self.membername = membername
-		self.dict_songnames = {}
+		self.dict_songs = {}
+		self.dict_keys = {}
 		self.songnumber = 0
 
 	def add(self, keyword, songname):
 		self.songnumber += 1
-		self.dict_songnames[keyword] = songname
+		if keyword not in self.dict_keys:
+			self.dict_keys[keyword] = 0
+		self.dict_songs[keyword] = songname
+		self.dict_keys[keyword] += 1
 
 	def getname(self):
 		return self.membername
 
-def rank_query(bot, contact, member, content):
+	def getnum(self):
+		return self.songnumber
+
+def rank_query_mostorder(bot, contact, member, content):
 	rank_list = sorted(orders.values(), key=lambda item: item.songnumber, reverse=True)
-	bot.SendTo(contact, rank_list[0].getname())
-	bot.SendTo(contact, "success!")
+	no1_guy = rank_list[0]
+	rank_content = '今日点歌王是：' + no1_guy.getname() + '，ta点了 ' + no1_guy.getnum() + ' 首歌！真厉害！'
+	bot.SendTo(contact, rank_content)
+	# key_list = sorted(no1_guy.dict_keys.items(), key=lambda key, item: item, reverse=True)
+	# if key_list[0]
+	# rank_content2 = '其中，他点的最多的'
 
 def onQQMessage(bot, contact, member, content):
 	order_flag = False
@@ -52,7 +63,7 @@ def onQQMessage(bot, contact, member, content):
 		return search_song(bot, user_input, contact, member, content)
 
 	if rank_flag:
-		return rank_query(bot, contact, member, content)
+		return rank_query_mostorder(bot, contact, member, content)
 
 def search_song(bot, user_input, contact, member, content):
 	songname = user_input.split('，')[0]
