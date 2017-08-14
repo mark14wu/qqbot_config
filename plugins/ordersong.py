@@ -26,7 +26,7 @@ class Order(object):
 		return self.membername
 
 def rank_query():
-	rank_list = sorted(orders.itervalues(), key=lambda item: item.songnumber, reverse=True)
+	rank_list = sorted(orders.values(), key=lambda item: item.songnumber, reverse=True)
 	print(rank_list[0].getname())
 
 def onQQMessage(bot, contact, member, content):
