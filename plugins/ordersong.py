@@ -26,10 +26,10 @@ class Order(object):
 	def getname(self):
 		return self.membername
 
-def rank_query():
+def rank_query(bot, contact, member, content):
 	rank_list = sorted(orders.values(), key=lambda item: item.songnumber, reverse=True)
-	print(rank_list[0].getname())
-	print("success!\n")
+	bot.SendTo(contact, rank_list[0].getname())
+	bot.SendTo(contact, "success!")
 
 def onQQMessage(bot, contact, member, content):
 	order_flag = False
@@ -52,7 +52,7 @@ def onQQMessage(bot, contact, member, content):
 		return search_song(bot, user_input, contact, member, content)
 
 	if rank_flag:
-		return rank_query()
+		return rank_query(bot, contact, member, content)
 
 def search_song(bot, user_input, contact, member, content):
 	songname = user_input.split('，')[0]
