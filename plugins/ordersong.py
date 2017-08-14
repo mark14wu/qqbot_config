@@ -36,7 +36,7 @@ class Order(object):
 def rank_query_mostorder(bot, contact, member, content):
 	rank_list = sorted(orders.values(), key=lambda item: item.songnumber, reverse=True)
 	no1_guy = rank_list[0]
-	rank_content = '今日点歌王是：' + no1_guy.getname() + '，ta点了 ' + no1_guy.getnum() + ' 首歌！真厉害！'
+	rank_content = '今日点歌王是：' + no1_guy.getname() + '，ta点了 ' + str(no1_guy.getnum()) + ' 首歌！真厉害！'
 	bot.SendTo(contact, rank_content)
 	# key_list = sorted(no1_guy.dict_keys.items(), key=lambda key, item: item, reverse=True)
 	# if key_list[0]
