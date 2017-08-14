@@ -22,12 +22,13 @@ class Order(object):
 		self.songnumber += 1
 		self.dict_songnames[keyword] = songname
 
-def rank_query:
+def rank_query():
 	rank_list = sorted(orders.items(), key=item.songnumber, reverse=True)
 	print(rank_list[0].membername)
 
 def onQQMessage(bot, contact, member, content):
 	order_flag = False
+	rank_flag = True
 	if not contact.qq in group_list:
 		return
 
@@ -38,8 +39,15 @@ def onQQMessage(bot, contact, member, content):
 		user_input = content[4:]
 		order_flag = True
 
+	for rank_keyword in rank_keywords:
+		if rank_keyword not in content:
+			rank_flag = False
+
 	if order_flag:
 		return search_song(bot, user_input, contact, member, content)
+
+	if rank_flag:
+		return rank_query()
 
 def search_song(bot, user_input, contact, member, content):
 	songname = user_input.split('，')[0]
